@@ -49,7 +49,7 @@ class ViewController: UITableViewController {
         let dvc = ImageViewController()
         dvc.modalPresentationStyle = .custom
         
-        dvc.transitioningDelegate = BlurPopoverSharedTransitioningDelegate.newTransitioningDelegate(
+        dvc.transitioningDelegate = BlurPopoverSharedTransitioningDelegate.sharedDelegate(
             presentingSourceView: imageView,
             dismissingSourceView: imageView
         )
@@ -74,7 +74,7 @@ class ViewController: UITableViewController {
     private func presentScrollUsingTheSharedTransitioningDelegateViewExample() {
         let dvc = ScrollViewController()
         dvc.modalPresentationStyle = .custom
-        dvc.transitioningDelegate = BlurPopoverSharedTransitioningDelegate.newTransitioningDelegate()
+        dvc.transitioningDelegate = BlurPopoverSharedTransitioningDelegate.sharedDelegate()
         present(dvc, animated: true)
     }
     

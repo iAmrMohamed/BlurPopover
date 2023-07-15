@@ -42,16 +42,18 @@ open class BlurPopoverSharedTransitioningDelegate: NSObject, UIViewControllerTra
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        defer { Self.sharedDelegate.removeAll(where: { $0 == self }) }
+        defer { Self.shared.removeAll(where: { $0 == self }) }
         guard let sourceView = dismissingSourceView else { return nil }
         return BlurPopoverAnimationController(isPresenting: false, sourceView: sourceView)
     }
     
-    public static var sharedDelegate = [BlurPopoverSharedTransitioningDelegate]()
-    
-    public static func newTransitioningDelegate(presentingSourceView: UIView? = nil, dismissingSourceView: UIView? = nil) -> BlurPopoverSharedTransitioningDelegate? {
-        let controller = BlurPopoverSharedTransitioningDelegate(presentingSourceView: presentingSourceView, dismissingSourceView: dismissingSourceView)
-        sharedDelegate.append(controller)
+    public static var shared = [BlurPopoverSharedTransitioningDelegate]()
+    public static func sharedDelegate(presentingSourceView: UIView? = nil, dismissingSourceView: UIView? = nil) -> BlurPopoverSharedTransitioningDelegate? {
+        let controller = BlurPopoverSharedTransitioningDelegate(
+            presentingSourceView: presentingSourceView,
+            dismissingSourceView: dismissingSourceView
+        )
+        Self.shared.append(controller)
         return controller
     }
 }
