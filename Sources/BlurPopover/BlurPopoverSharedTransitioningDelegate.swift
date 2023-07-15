@@ -26,10 +26,10 @@ import UIKit
 
 open class BlurPopoverSharedTransitioningDelegate: NSObject, UIViewControllerTransitioningDelegate {
     private let presentingSourceView: UIView?
-    private let dismissingSourceView: UIView?
-    init(presentingSourceView: UIView? = nil, dismissingSourceView: UIView? = nil) {
+    private let dismissingDestinationView: UIView?
+    init(presentingSourceView: UIView? = nil, dismissingDestinationView: UIView? = nil) {
         self.presentingSourceView = presentingSourceView
-        self.dismissingSourceView = dismissingSourceView
+        self.dismissingDestinationView = dismissingDestinationView
     }
     
     public func presentationController(forPresented presented: UIViewController, presenting: UIViewController?, source: UIViewController) -> UIPresentationController? {
@@ -43,15 +43,15 @@ open class BlurPopoverSharedTransitioningDelegate: NSObject, UIViewControllerTra
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
         defer { Self.shared.removeAll(where: { $0 == self }) }
-        guard let sourceView = dismissingSourceView else { return nil }
+        guard let sourceView = dismissingDestinationView else { return nil }
         return BlurPopoverAnimationController(isPresenting: false, sourceView: sourceView)
     }
     
     public static var shared = [BlurPopoverSharedTransitioningDelegate]()
-    public static func sharedDelegate(presentingSourceView: UIView? = nil, dismissingSourceView: UIView? = nil) -> BlurPopoverSharedTransitioningDelegate? {
+    public static func sharedDelegate(presentingSourceView: UIView? = nil, dismissingDestinationView: UIView? = nil) -> BlurPopoverSharedTransitioningDelegate? {
         let controller = BlurPopoverSharedTransitioningDelegate(
             presentingSourceView: presentingSourceView,
-            dismissingSourceView: dismissingSourceView
+            dismissingDestinationView: dismissingDestinationView
         )
         Self.shared.append(controller)
         return controller

@@ -51,7 +51,7 @@ class ViewController: UITableViewController {
         
         dvc.transitioningDelegate = BlurPopoverSharedTransitioningDelegate.sharedDelegate(
             presentingSourceView: imageView,
-            dismissingSourceView: imageView
+            dismissingDestinationView: imageView
         )
         
         present(dvc, animated: true)
