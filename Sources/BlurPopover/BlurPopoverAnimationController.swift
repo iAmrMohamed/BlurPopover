@@ -32,7 +32,7 @@ open class BlurPopoverAnimationController: NSObject, UIViewControllerAnimatedTra
         sourceView.superview?.convert(sourceView.center, to: nil) ?? .zero
     }
     
-    init(isPresenting: Bool, sourceView: UIView) {
+    public init(isPresenting: Bool, sourceView: UIView) {
         self.isPresenting = isPresenting
         self.sourceView = sourceView
     }
