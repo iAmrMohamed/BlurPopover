@@ -3,6 +3,10 @@ Custom presentation controller with a dynamic blur background that increases the
 
 ![](Resources/examples.png)
 
+
+https://github.com/iAmrMohamed/BlurPopover/assets/8356318/03095123-213e-4a54-96ce-f81a85feb9de
+
+
 ### Installation
 `BlurPopover` is currently available either manually by cloning the project and adding the folder `BlurPopover` to your project, or you can use the Swift Package Manager (SPM).
 
